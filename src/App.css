@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+:root {
+  --color-light-green: #1cd81c;
+  --color-black: rgb(32, 35, 41);
+  --color-dark: rgb(60, 62, 68);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.characterGrid {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.characterCard {
   display: flex;
-  flex-direction: column;
+  background-color: var(--color-dark);
+  color: white;
+  width: 600px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  margin: 0.75rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.characterCard .info {
+  padding-left: 15px;
+}
+
+.characterCard .name {
+  font-size: xx-large;
+  font-weight: 900;
+}
+
+.characterCard .statusSpecies {
+  font-weight: 700;
+}
+
+.characterCard .bullet {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* search bar */
+.searchBar {
+  height: 40px;
+  width: 322px;
+  background-color: lightgray;
+  display: flex;
+}
+.searchBar input {
+  border: none;
+  outline: none;
+  background: var(--color-dark);
+  color: white;
+  height: 100%;
+  width: 266px;
+  padding: 0 10px;
+}
+.searchBar .searchIcon {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 56px;
+}
+
+/*header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--color-black);
   color: white;
+  height: 67px;
+  padding: 0 50px;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.routes {
+  display: flex;
+  align-items: center;
+  width: 294px;
+  justify-content: space-between;
 }
