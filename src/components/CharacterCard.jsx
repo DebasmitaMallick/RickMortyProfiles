@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 
 const CharacterCard = ({details}) => {
-    useEffect(() => {
-        console.log(details)
-    }, [details])
+    // useEffect(() => {
+    //     console.log(details)
+    // }, [details])
   return (
     <div className='characterCard'>
         <div className='image'>

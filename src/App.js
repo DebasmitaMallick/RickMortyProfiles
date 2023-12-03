@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './containers/Home';
 import Header from './components/Header';
-import CharacterDetails from './containers/CharacterDetails';
+import CharacterDetails from './components/CharacterDetails';
 
 function App() {
   return (

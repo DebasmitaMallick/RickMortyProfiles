@@ -8,12 +8,14 @@
   display: grid;
   grid-template-columns: auto auto;
   justify-content: center;
+  margin-left: 300px;
+  margin-top: 67px;
 }
 .characterCard {
   display: flex;
   background-color: var(--color-dark);
   color: white;
-  width: 600px;
+  width: 530px;
   height: 220px;
   overflow: hidden;
   border-radius: 0.5rem;
@@ -79,10 +81,31 @@ a {
   color: white;
   height: 67px;
   padding: 0 50px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
 }
 .routes {
   display: flex;
   align-items: center;
   width: 294px;
   justify-content: space-between;
+}
+
+/*filter */
+.filterBar {
+  position: fixed;
+  left: 0;
+  top: 67px;
+  background: var(--color-black);
+  color: white;
+  width: 300px;
+  height: 100%;
+  text-align: center;
+}
+.filterBar .filters select {
+  width: 250px;
+  height: 37px;
+  margin-bottom: 18px;
 }

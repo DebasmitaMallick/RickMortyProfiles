@@ -1,13 +1,15 @@
 import React from 'react'
 import { useCharacterContext } from '../context/CharacterProvider'
 import CharacterCard from '../components/CharacterCard';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CharacterGrid = () => {
 
     const {
-        state: {characters, searchQuery}
+        state: {characters, searchQuery, byStatus, byLocation, byEpisode, byGender, bySpecies}
     } = useCharacterContext();
+
+    const navigate = useNavigate();
 
     const transformedCharacters = () => {
         let sortedCharacters = characters
@@ -16,18 +18,43 @@ const CharacterGrid = () => {
                 char => char.name.toLowerCase().includes(searchQuery.toLowerCase())
             )
         }
+        if(byStatus !== "All") {
+            sortedCharacters = sortedCharacters.filter(
+                char => char.status === byStatus
+            )
+        }
+        if(byLocation !== "All") {
+            sortedCharacters = sortedCharacters.filter(
+                char => char.location.name === byLocation
+            )
+        }
+        if(byGender !== "All") {
+            sortedCharacters = sortedCharacters.filter(
+                char => char.gender === byGender
+            )
+        }
+        if(bySpecies !== "All") {
+            sortedCharacters = sortedCharacters.filter(
+                char => char.species === bySpecies
+            )
+        }
         return sortedCharacters;
     }
 
+    const handleClick = (character) => {
+        navigate("/details", {
+            state : {character: character}
+        });
+    }
     
 
     return (
         <div className='characterGrid'>
             {
                 transformedCharacters().map(character => 
-                    <Link key={character.id} to={"/details"} state={{character: character}}>
+                    <div key={character.id} onClick={() => handleClick(character)}>
                         <CharacterCard details={character} />
-                    </Link>
+                    </div>
                 )
             }
         </div>
