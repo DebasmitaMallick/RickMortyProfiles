@@ -58,6 +58,7 @@ const Filters = () => {
                 {
                     filterOptions.map(filter =>
                         <div key={filter.label}>
+                            <label>{filter.label}:</label>
                             <select 
                                 name={filter.label} 
                                 id={filter.label} 

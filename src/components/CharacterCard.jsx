@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 const CharacterCard = ({details}) => {
     // useEffect(() => {
-    //     console.log(details)
+    //     console.log('character', details)
     // }, [details])
   return (
     <div className='characterCard'>

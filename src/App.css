@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: auto auto;
   justify-content: center;
-  margin-left: 300px;
+  margin-left: 364px;
   margin-top: 67px;
 }
 .characterCard {
@@ -100,12 +100,19 @@ a {
   top: 67px;
   background: var(--color-black);
   color: white;
-  width: 300px;
+  width: 364px;
   height: 100%;
-  text-align: center;
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .filterBar .filters select {
   width: 250px;
   height: 37px;
   margin-bottom: 18px;
+}
+.filterBar .filters label {
+  min-width: 76px;
+  display: inline-block;
 }

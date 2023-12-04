@@ -6,6 +6,8 @@ const CharacterContext = createContext();
 
 export const useCharacterContext = () => useContext(CharacterContext);
 
+// const episodeToCharacters_map = new Map([]);
+
 const CharacterProvider = ({children}) => {
 
   const [characters, setCharacters] = useState([])
@@ -65,7 +67,11 @@ const CharacterProvider = ({children}) => {
 
   const getEpisodeName = (id) => {
     const idx = parseInt(id)-1
-    return episodes && episodes[idx] && episodes[idx].name ? episodes[idx].name : ""
+    const val = episodes && episodes[idx] && episodes[idx].name ? episodes[idx].name : ""
+    // if(episodeToCharacters_map.has(val)) {
+    //   episodeToCharacters_map.set(val, episodeToCharacters_map.get(val).push())
+    // }
+    return val
   }
 
   const getLocationDetail = (id) => {
