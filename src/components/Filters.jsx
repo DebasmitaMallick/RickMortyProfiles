@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useCharacterContext } from '../context/CharacterProvider'
 
 const Filters = () => {
-    const {dispatch, locations, episodes,
-        state: {byStatus, byLocation, byEpisode, byGender, bySpecies, }
+    const {dispatch, locations, episodes, character_types,
+        state: {byStatus, byLocation, byEpisode, byGender, bySpecies, byType }
     } = useCharacterContext();
 
     const [filterOptions, setFilterOptions] = useState([]);
@@ -40,16 +40,19 @@ const Filters = () => {
                 actionType: "FILTER_BY_SPECIES",
                 val: bySpecies
             },
-            // {
-            //     label: "Type"
-            // }
+            {
+                label: "Type",
+                options: Array.from(character_types),
+                actionType: "FILTER_BY_TYPE",
+                val: byType
+            }
         ];
         setFilterOptions(data)
     }
 
     useEffect(() => {
         handleOptions()
-    }, [locations, episodes, byStatus, byLocation, byEpisode, byGender, bySpecies]);
+    }, [locations, episodes, byStatus, byLocation, byEpisode, byGender, bySpecies, byType]);
 
     return (
         <div className='filterBar'>

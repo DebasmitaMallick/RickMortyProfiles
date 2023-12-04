@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const CharacterGrid = () => {
 
     const {
-        state: {characters, searchQuery, byStatus, byLocation, byEpisode, byGender, bySpecies}
+        state: {characters, searchQuery, byStatus, byLocation, byEpisode, byGender, bySpecies, byType}
     } = useCharacterContext();
 
     const navigate = useNavigate();
@@ -41,6 +41,11 @@ const CharacterGrid = () => {
         if(bySpecies !== "All") {
             sortedCharacters = sortedCharacters.filter(
                 char => char.species === bySpecies
+            )
+        }
+        if(byType !== "All") {
+            sortedCharacters = sortedCharacters.filter(
+                char => (!char.type && byType === "None") || char.type === byType
             )
         }
         return sortedCharacters;

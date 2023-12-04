@@ -116,3 +116,67 @@ a {
   min-width: 76px;
   display: inline-block;
 }
+
+/*Character details*/
+/* .characterDetailsContainer {
+  margin-top: 67px;
+}
+.characterDetails {
+  display: flex;
+} */
+.characterDetailsContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.characterDetails {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.characterDetails .image {
+  flex: 0 0 200px;
+  margin-right: 20px;
+}
+
+.characterDetails .image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.characterDetails .details {
+  flex: 1;
+}
+
+.characterDetails h2 {
+  color: #333;
+}
+
+.characterDetails p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.characterDetails h3 {
+  margin-top: 20px;
+  color: #333;
+}
+
+.characterDetails ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.characterDetails li {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Add more styles as needed */

@@ -6,7 +6,7 @@ const CharacterContext = createContext();
 
 export const useCharacterContext = () => useContext(CharacterContext);
 
-// const episodeToCharacters_map = new Map([]);
+const character_types = new Set([]);
 
 const CharacterProvider = ({children}) => {
 
@@ -19,7 +19,9 @@ const CharacterProvider = ({children}) => {
   const fetchCharacterData = async () => { 
     try {
       const characterData = await getData('character');
-      setCharacters(characterData.results);
+      const data = characterData.results
+      setCharacters(data);
+      handleTypes(data);
     } catch(error) {
       console.log('Error fetching characters:', error)
     }
@@ -68,11 +70,11 @@ const CharacterProvider = ({children}) => {
     return val
   }
 
-  const getEpisode = (id) => {
-    const idx = parseInt(id)-1
-    const episode = episodes && episodes[idx] ? episodes[idx] : null
-    return episode
-  }
+  // const getEpisode = (id) => {
+  //   const idx = parseInt(id)-1
+  //   const episode = episodes && episodes[idx] ? episodes[idx] : null
+  //   return episode
+  // }
 
   const getLocationDetail = (id) => {
     const idx = parseInt(id)-1
@@ -83,6 +85,8 @@ const CharacterProvider = ({children}) => {
     if(!(characters && episodes && locations)) return;
 
     const updatedCharacters = characters.map(character => {
+      //update types
+      // character_types.add(character.type ? character.type : "None");
       //handleEpisodes
       const episodeUrls = character.episode;
       let episodeList = [];
@@ -93,16 +97,19 @@ const CharacterProvider = ({children}) => {
           episodeList.push(episodeName)
         }
       })
-
-      //handleLocation
       
       return {
         ...character,
         episodeList
       }
     });
-    console.log('updatedCharacters', updatedCharacters)
     setCharacters(updatedCharacters)
+  }
+
+  const handleTypes = (characterData) => {
+    characterData.forEach(character => {
+      character_types.add(character.type ? character.type : "None");
+    })
   }
 
   useEffect(() => {
@@ -123,7 +130,8 @@ const CharacterProvider = ({children}) => {
         getEpisodeName, 
         getLocationDetail,
         locations,
-        episodes
+        episodes,
+        character_types
       }}>
       {children}
     </CharacterContext.Provider>
