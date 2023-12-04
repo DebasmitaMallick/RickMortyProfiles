@@ -1,12 +1,10 @@
 import React from 'react'
 import SearchBar from './SearchBar'
+import { IoMdHome } from "react-icons/io";
 
 const routes = [
     {
-        name: "Home",
-    },
-    {
-        name: "Details"
+        name: <IoMdHome size={26} />,
     },
     {
         name: "Locations",

@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useCharacterContext } from '../context/CharacterProvider'
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const Filters = () => {
     const {dispatch, locations, episodes, character_types,
-        state: {byStatus, byLocation, byEpisode, byGender, bySpecies, byType }
+        state: {byStatus, byLocation, byEpisode, byGender, bySpecies, byType },
+        windowWidth
     } = useCharacterContext();
 
     const [filterOptions, setFilterOptions] = useState([]);
+
+    const [visible, setVisible] = useState(true)
 
     const handleOptions = () => {
         const data = [
@@ -54,35 +58,47 @@ const Filters = () => {
         handleOptions()
     }, [locations, episodes, byStatus, byLocation, byEpisode, byGender, bySpecies, byType]);
 
+    const handleToggle = () => {
+        setVisible(!(visible && windowWidth > 930))
+    }
+    
+
     return (
-        <div className='filterBar'>
-            <h2>Filters</h2>
-            <div className='filters'>
-                {
-                    filterOptions.map(filter =>
-                        <div key={filter.label}>
-                            <label>{filter.label}:</label>
-                            <select 
-                                name={filter.label} 
-                                id={filter.label} 
-                                value={filter.val}
-                                onChange={(e) => dispatch({
-                                    type: filter.actionType,
-                                    payload: e.target.value
-                                })}
-                            >
-                                <option value={"All"}>All</option>
-                                {
-                                    filter.options.map(opt => {
-                                        let name = filter.label === "Location" || filter.label === "Episode" ? opt.name : opt;
-                                        return <option key={name} value={name}>{name}</option>
-                                    })
-                                }
-                            </select>
-                        </div>
-                    )
-                }
-            </div>
+        <div className='filterSection'>
+            {
+                (visible && windowWidth > 930) ?
+                <div className='filterBar'>
+                    <div className='filters'>
+                        {
+                            filterOptions.map(filter =>
+                                <div key={filter.label}>
+                                    <label>Filter by {filter.label}:</label>
+                                    <select 
+                                        name={filter.label} 
+                                        id={filter.label} 
+                                        value={filter.val}
+                                        onChange={(e) => dispatch({
+                                            type: filter.actionType,
+                                            payload: e.target.value
+                                        })}
+                                    >
+                                        <option value={"All"}>All</option>
+                                        {
+                                            filter.options.map(opt => {
+                                                let name = filter.label === "Location" || filter.label === "Episode" ? opt.name : opt;
+                                                return <option key={name} value={name}>{name}</option>
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                            )
+                        }
+                    </div>
+                </div> :
+                <div className='toggleFilters' onClick={handleToggle}>
+                    <RxHamburgerMenu />
+                </div>
+            }
         </div>
     )
 }

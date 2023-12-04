@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer, useState } from 'react';
 import { getData } from '../services/characterService';
 import { characterFilterReducer } from './Reducers';
+import PropTypes from 'prop-types';
 
 const CharacterContext = createContext();
 
@@ -9,6 +10,10 @@ export const useCharacterContext = () => useContext(CharacterContext);
 const character_types = new Set([]);
 
 const CharacterProvider = ({children}) => {
+
+  CharacterProvider.propTypes = {
+    children: PropTypes.node
+  }
 
   const [characters, setCharacters] = useState([])
 
@@ -64,18 +69,8 @@ const CharacterProvider = ({children}) => {
   const getEpisodeName = (id) => {
     const idx = parseInt(id)-1
     const val = episodes && episodes[idx] && episodes[idx].name ? episodes[idx].name : ""
-    // if(episodeToCharacters_map.has(val)) {
-    //   episodeToCharacters_map.set(val, episodeToCharacters_map.get(val).push())
-    // }
     return val
   }
-
-  // const getEpisode = (id) => {
-  //   const idx = parseInt(id)-1
-  //   const episode = episodes && episodes[idx] ? episodes[idx] : null
-  //   return episode
-  // }
-
   const getLocationDetail = (id) => {
     const idx = parseInt(id)-1
     return locations && locations[idx] ? locations[idx] : []
@@ -85,9 +80,6 @@ const CharacterProvider = ({children}) => {
     if(!(characters && episodes && locations)) return;
 
     const updatedCharacters = characters.map(character => {
-      //update types
-      // character_types.add(character.type ? character.type : "None");
-      //handleEpisodes
       const episodeUrls = character.episode;
       let episodeList = [];
       episodeUrls.forEach(url => {
@@ -122,6 +114,20 @@ const CharacterProvider = ({children}) => {
     mapCharacterTo_Episodes();
   }, [episodes])
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
 
   return (
     <CharacterContext.Provider value={{
@@ -131,7 +137,9 @@ const CharacterProvider = ({children}) => {
         getLocationDetail,
         locations,
         episodes,
-        character_types
+        character_types,
+
+        windowWidth
       }}>
       {children}
     </CharacterContext.Provider>

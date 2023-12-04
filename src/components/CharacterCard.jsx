@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types';
 
 const CharacterCard = ({details}) => {
-    // useEffect(() => {
-    //     console.log('character', details)
-    // }, [details])
+    CharacterCard.propTypes = {
+        details: PropTypes.object
+    };
+
   return (
     <div className='characterCard'>
         <div className='image'>

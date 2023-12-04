@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const CharacterGrid = () => {
 
     const {
-        state: {characters, searchQuery, byStatus, byLocation, byEpisode, byGender, bySpecies, byType}
+        state: {characters, searchQuery, byStatus, byLocation, byEpisode, byGender, bySpecies, byType}, windowWidth
     } = useCharacterContext();
 
     const navigate = useNavigate();
@@ -59,7 +59,7 @@ const CharacterGrid = () => {
     
 
     return (
-        <div className='characterGrid'>
+        <div className='characterGrid' style={{marginLeft: windowWidth > 930 ? 320 : 0 }}>
             {
                 transformedCharacters().map(character => 
                     <div key={character.id} onClick={() => handleClick(character)}>
