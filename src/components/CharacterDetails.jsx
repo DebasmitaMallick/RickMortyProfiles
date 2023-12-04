@@ -6,28 +6,11 @@ const CharacterDetails = () => {
   const { state } = useLocation();
   const { character } = state || {};
 
-  const { getEpisodeName, getLocationDetail } = useCharacterContext();
-
-  const [episodeNames, setEpisodeNames] = useState([]);
+  const { getLocationDetail } = useCharacterContext();
 
   const [locationDetail, setLocationDetail] = useState({});
 
   const [originDetail, setOriginDetail] = useState({});
-
-  const fetchEpisodes = () => {
-    if(!character) return []
-
-    let data = []
-    // const episodeArr = Array.from(character.episode);
-    character.episode.forEach(url => {
-      const id = url.substring(url.lastIndexOf('/')+1) - 1;
-      const episodeName = getEpisodeName(id)
-      if(episodeName) {
-        data.push(episodeName);
-      }
-    });
-    setEpisodeNames(data);
-  }
 
   const fetchLocationDetail = () => {
     const id = character && character.location && character.location.url.substring(character.location.url.lastIndexOf('/')+1);
@@ -38,15 +21,14 @@ const CharacterDetails = () => {
   const fetchOriginDetail = () => {
     const id = character && character.origin && character.origin.url.substring(character.origin.url.lastIndexOf('/')+1);
     const data = getLocationDetail(id);
-    console.log(data)
+    // console.log(data)
     setOriginDetail(data)
   }
 
   useEffect(() => {
-    fetchEpisodes();
     fetchLocationDetail();
     fetchOriginDetail();
-    console.log(character)
+    // console.log(character)
   }, [character])
   return (
     <div>
@@ -75,8 +57,8 @@ const CharacterDetails = () => {
       <div>
         <h3>Episodes</h3>
         <ul>
-          {episodeNames.map((name) => (
-              <li key={name}>{name}</li>
+          {character.episodeList.map((ep) => (
+              <li key={ep}>{ep}</li>
             ))}
         </ul>
       </div>

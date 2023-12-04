@@ -16,7 +16,7 @@ const CharacterProvider = ({children}) => {
 
   const [locations, setLocations] = useState([])
 
-  const fetchData = async () => {
+  const fetchCharacterData = async () => { 
     try {
       const characterData = await getData('character');
       setCharacters(characterData.results);
@@ -43,12 +43,6 @@ const CharacterProvider = ({children}) => {
     }
   }
 
-  useEffect(() => {
-    fetchData();
-    fetchEpisodes();
-    fetchLocations();
-  }, []);
-
   const [state, dispatch] = useReducer(characterFilterReducer, {
     characters: characters,
     byStatus: "All",
@@ -74,10 +68,52 @@ const CharacterProvider = ({children}) => {
     return val
   }
 
+  const getEpisode = (id) => {
+    const idx = parseInt(id)-1
+    const episode = episodes && episodes[idx] ? episodes[idx] : null
+    return episode
+  }
+
   const getLocationDetail = (id) => {
     const idx = parseInt(id)-1
     return locations && locations[idx] ? locations[idx] : []
   }
+
+  const mapCharacterTo_Episodes = () => {
+    if(!(characters && episodes && locations)) return;
+
+    const updatedCharacters = characters.map(character => {
+      //handleEpisodes
+      const episodeUrls = character.episode;
+      let episodeList = [];
+      episodeUrls.forEach(url => {
+        const episodeId = url.substring(url.lastIndexOf('/')+1);
+        const episodeName = getEpisodeName(episodeId);
+        if(episodeName) {
+          episodeList.push(episodeName)
+        }
+      })
+
+      //handleLocation
+      
+      return {
+        ...character,
+        episodeList
+      }
+    });
+    console.log('updatedCharacters', updatedCharacters)
+    setCharacters(updatedCharacters)
+  }
+
+  useEffect(() => {
+    fetchCharacterData();
+    fetchEpisodes();
+    fetchLocations();
+  }, []);
+
+  useEffect(() => {
+    mapCharacterTo_Episodes();
+  }, [episodes])
 
 
   return (

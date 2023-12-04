@@ -28,11 +28,11 @@ const CharacterGrid = () => {
                 char => char.location.name === byLocation
             )
         }
-        // if(byEpisode !== "All") {
-        //     sortedCharacters = sortedCharacters.filter(
-        //         char => char.episode
-        //     )
-        // }
+        if(byEpisode !== "All") {
+            sortedCharacters = sortedCharacters.filter(
+                char => char.episodeList.includes(byEpisode)
+            )
+        }
         if(byGender !== "All") {
             sortedCharacters = sortedCharacters.filter(
                 char => char.gender === byGender
