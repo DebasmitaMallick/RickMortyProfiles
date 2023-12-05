@@ -1,16 +1,32 @@
-Page to display characters' profiles in a grid of cards 
-    Ability to search a character by name
-    Ability to filter grid items on these fields (status, location, episode, gender, species, type)
-    Ability to navigate to an individual Character’s profile. Implement the following details in each profile:
-Profile page
-    Character's picture
-    Character's information (name, species, gender, etc.)
-    Origin and current location details (name, dimension, amount of residents, etc.) [Important]
-    Name of the Episodes the character is featured in [Important]
-Optional -> 
-    Page to display Locations in a grid of cards 
-    Ability to search a location by name
-    Ability to see characters related to a location
-    Page to display Episodes in a grid of cards 
-    Ability to search a Episode by name
-    Ability to see characters in an episode
+# Rick and Morty Character Explorer
+
+## Overview
+
+The Rick and Morty Character Explorer is a React web application developed as part of an assignment. The application allows users to explore characters from the animated TV series "Rick and Morty" and serves as a showcase of React development skills.
+
+## Features
+
+- **Character Grid:** View a grid of characters with their basic information.
+- **Filters:** Filter characters based on status, location, episode, gender, species, and type.
+- **Search:** Search for characters by name.
+- **Character Details:** View detailed information about a specific character, including origin details, location details, and episodes.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js installed on your machine
+- npm package manager
+
+### Installation
+
+1. Clone the repository:
+
+git clone https://github.com/your-username/rick-and-morty-explorer.git
+
+2. Navigate to the project directory
+
+3. Install dependencies
+npm install
+
+

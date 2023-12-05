@@ -37,6 +37,7 @@
 
 .characterCard .statusSpecies {
   font-weight: 700;
+  padding-bottom: 13px;
 }
 
 .characterCard .bullet {
@@ -247,6 +248,25 @@ a {
   }
   .filterBar {
     display: flex;
+  }
+}
+
+@media only screen and (min-width: 501px) {
+  .characterCard .image {
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+  }
+
+  .characterCard .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .characterCard .image img {
+    border-radius: 50%;
+    height: 80%;
   }
 }
 
