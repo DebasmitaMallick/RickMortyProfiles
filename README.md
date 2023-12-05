@@ -20,9 +20,7 @@ The Rick and Morty Character Explorer is a React web application developed as pa
 
 ### Installation
 
-1. Clone the repository:
-
-git clone https://github.com/your-username/rick-and-morty-explorer.git
+1. Clone the repository
 
 2. Navigate to the project directory
 
