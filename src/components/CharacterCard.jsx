@@ -25,12 +25,12 @@ const CharacterCard = ({details}) => {
             </div>
 
             {/* Display last known location information with a link */}
-            <div>Last known location</div>
-            <div><a href={details.location.url} target='_blank' rel="noreferrer">{details.location.name}</a></div>
+            <div className='label'>Last known location</div>
+            <div className='val'>{details.location.name}</div>
 
             {/* Display first seen location information with a link */}
-            <div>First seen in</div>
-            <div><a href={details.origin.url} target='_blank' rel="noreferrer">{details.origin.name}</a></div>
+            <div className='label'>First seen in</div>
+            <div className='val'>{details.origin.name}</div>
         </div>
     </div>
   )

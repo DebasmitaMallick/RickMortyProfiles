@@ -26,6 +26,12 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 
+.characterCard .label {
+  color: lightgray;
+}
+.characterCard .val {
+  font-size: 18px;
+}
 .characterCard .info {
   padding-left: 15px;
 }
@@ -84,17 +90,11 @@ a {
   background: var(--color-black);
   color: white;
   height: 67px;
-  padding: 0 50px;
+  padding: 0 35px;
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
-}
-.routes {
-  display: flex;
-  align-items: center;
-  width: 294px;
-  justify-content: space-between;
 }
 
 /*filter */
