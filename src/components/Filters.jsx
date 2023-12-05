@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { useCharacterContext } from '../context/CharacterProvider'
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross1 } from "react-icons/rx";
 
 const Filters = () => {
+
+    // Destructure values from the character context
     const {dispatch, locations, episodes, character_types,
-        state: {byStatus, byLocation, byEpisode, byGender, bySpecies, byType },
-        windowWidth
+        state: {byStatus, byLocation, byEpisode, byGender, bySpecies, byType }
     } = useCharacterContext();
 
+    // State for storing filter options
     const [filterOptions, setFilterOptions] = useState([]);
 
-    const [visible, setVisible] = useState(true)
+    // State for toggling filter visibility
+    const [isVisible, setIsVisible] = useState(true)
 
+    // Function to set filter options based on context values
     const handleOptions = () => {
         const data = [
             {
@@ -54,20 +59,22 @@ const Filters = () => {
         setFilterOptions(data)
     }
 
+    // Call handleOptions whenever context values change
     useEffect(() => {
         handleOptions()
     }, [locations, episodes, byStatus, byLocation, byEpisode, byGender, bySpecies, byType]);
 
+    // Function to handle toggle of filter visibility
     const handleToggle = () => {
-        setVisible(!(visible && windowWidth > 930))
+        setIsVisible(!isVisible)
     }
     
 
     return (
         <div className='filterSection'>
+            {/* Filter bar */}
             {
-                (visible && windowWidth > 930) ?
-                <div className='filterBar'>
+                <div className={`filterBar ${isVisible ? '' : 'filterBarHidden'}`}>
                     <div className='filters'>
                         {
                             filterOptions.map(filter =>
@@ -94,11 +101,19 @@ const Filters = () => {
                             )
                         }
                     </div>
-                </div> :
-                <div className='toggleFilters' onClick={handleToggle}>
-                    <RxHamburgerMenu />
-                </div>
+                </div> 
             }
+            {/* Toggle button for filter visibility */}
+            <div
+                className={`toggleFilters ${isVisible ? 'filterBarVisible' : 'filterBarHidden'}`}
+                onClick={handleToggle}
+            >
+                {isVisible ? (
+                    <RxHamburgerMenu />
+                ) : (
+                    <RxCross1 color='white' />
+                )}
+            </div>
         </div>
     )
 }

@@ -111,6 +111,9 @@ a {
   align-items: center;
   padding-top: 44px;
 }
+.filterBarHidden {
+  display: none;
+}
 .filterBar .filters select {
   width: 250px;
   height: 37px;
@@ -223,10 +226,58 @@ a {
   color: #777;
 }
 
+.characterDetailsPage .backBtn {
+  position: fixed;
+  top: 6px;
+  left: 36px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
 
+.characterDetailsPage .backBtn .btn {
+  font-size: 2rem;
+  display: flex;
+  margin-right: 5px;
+}
 
+@media only screen and (min-width: 931px) {
+  .toggleFilters {
+    display: none;
+  }
+  .filterBar {
+    display: flex;
+  }
+}
 
+@media only screen and (max-width: 500px) {
+  .characterCard {
+    flex-direction: column;
+    height: 468px;
+    width: fit-content;
+    margin: 0.75rem auto;
+  }
+}
 
+@media only screen and (max-width: 530px) {
+  /* .characterDetailsContainer .personalInfo {
+    flex-direction: column;
+    align-items: baseline;
+  } */
+  .characterDetailsContainer .profile {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 930px) {
+  .filterBar {
+    display: none;
+  }
+
+  .filterBarHidden {
+    display: flex;
+  }
+}
 
 @media only screen and (max-width: 1460px) {
   .characterGrid {
