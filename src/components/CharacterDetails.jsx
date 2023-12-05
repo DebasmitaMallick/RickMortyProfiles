@@ -86,7 +86,7 @@ const CharacterDetails = () => {
           </div>
           <div className='personalInfo'>
             <h2>{character.name}</h2>
-            <h4 className='badge'>{character.gender}, {character.species}</h4>
+            <h4 className='badge' style={{background: character.status === "Alive" ? "#81d981" : "lightgray"}}>{character.gender}, {character.species}</h4>
           </div>
         </div>
         {/* Details section with origin, location, and episodes information */}
